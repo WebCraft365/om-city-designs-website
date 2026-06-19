@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OM City Designs — Architecture, House Plans & Construction, Harare</title>
+<meta name="description" content="OM City Designs — Harare's architectural studio. House plans from $99, photoreal 3D visualisation, construction management and interior design across Zimbabwe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root{
+  --ink:#07090c;
+  --ink-2:#111820;
+  --slate:#1c2630;
+  --slate-2:#263140;
+  --stone:#7d6d58;
+  --stone-2:#a08c74;
+  --timber:#8b5e3c;
+  --timber-2:#c4845a;
+  --gold:#c89038;
+  --gold-2:#e8b55a;
+  --gold-3:#f5d080;
+  --sky:#b8d4e0;
+  --white:#f5f3ef;
+  --paper:#edeae2;
+  --paper-2:#e2ded5;
+  --concrete:#cbc5b8;
+  --cyan:#6dd9e8;
+  --cyan-dim:rgba(109,217,232,.15);
+  --wa:#25d366;
+  --maxw:1300px;
+  --r:16px;
+  --glow-gold:0 0 40px rgba(200,144,56,.4);
+  --glow-cyan:0 0 40px rgba(109,217,232,.35);
+  --glow-wa:0 0 30px rgba(37,211,102,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.06;letter-spacing:-0.02em;}
+.mono{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;font-weight:500;}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+section{padding:110px 0;}
+
+/* ─── SCROLL PROGRESS ──────────────────────────────────────── */
+#progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--gold),var(--cyan));z-index:200;transition:width .06s linear;pointer-events:none;}
+
+/* ─── CURSOR GLOW ───────────────────────────────────────────── */
+#cursor-glow{position:fixed;width:350px;height:350px;background:radial-gradient(circle,rgba(200,144,56,.06),transparent 70%);border-radius:50%;pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:transform .08s linear;}
+
+/* ─── REVEAL ─────────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+.reveal.delay-1{transition-delay:.1s;}
+.reveal.delay-2{transition-delay:.2s;}
+.reveal.delay-3{transition-delay:.3s;}
+.reveal.delay-4{transition-delay:.4s;}
+.reveal.is-in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+.reveal-left.is-in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+.reveal-right.is-in{opacity:1;transform:translateX(0);}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.reveal-left,.reveal-right{opacity:1;transform:none;transition:none;}
+  *{animation-duration:.01ms !important;}
+}
+
+/* ─── NAVIGATION ─────────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,border-color .3s,box-shadow .3s;border-bottom:1px solid transparent;}
+.nav.scrolled{background:rgba(7,9,12,.88);backdrop-filter:blur(20px) saturate(160%);border-bottom-color:rgba(255,255,255,.07);box-shadow:0 4px 32px rgba(0,0,0,.3);}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:var(--white);letter-spacing:-.01em;}
+.brand-mark{width:32px;height:32px;flex:none;}
+.navlinks{display:flex;gap:28px;align-items:center;}
+.navlinks a{font-size:.88rem;font-weight:500;color:rgba(245,243,239,.7);transition:color .2s;position:relative;}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--cyan));transition:width .25s;}
+.navlinks a:hover{color:var(--white);}
+.navlinks a:hover::after{width:100%;}
+.nav-wa{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:#fff;padding:9px 18px;border-radius:999px;font-size:.82rem;font-weight:600;transition:transform .2s,box-shadow .2s;}
+.nav-wa:hover{transform:translateY(-2px);box-shadow:var(--glow-wa);}
+.nav-wa svg{width:16px;height:16px;}
+.navtoggle{display:none;padding:6px;color:var(--white);}
+.navtoggle span{display:block;width:22px;height:1.5px;background:currentColor;margin:5px 0;transition:transform .25s,opacity .25s;}
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;padding-bottom:80px;
+  isolation:isolate;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('690779575_1518973372925547_1655713321456651410_n.jpg');
+  background-size:cover;background-position:center 30%;
+  will-change:transform;
+}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom, rgba(7,9,12,.25) 0%, rgba(7,9,12,.15) 35%, rgba(7,9,12,.7) 75%, rgba(7,9,12,.95) 100%),
+    radial-gradient(ellipse 80% 60% at 70% 60%, rgba(200,144,56,.18), transparent 65%);
+}
+.hero-content{position:relative;z-index:1;max-width:760px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;padding:7px 14px 7px 10px;border-radius:999px;border:1px solid rgba(109,217,232,.3);background:rgba(109,217,232,.06);color:var(--cyan);}
+.hero-eyebrow .dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan);animation:pulse 1.8s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.8);}}
+.hero h1{
+  font-size:clamp(2.8rem,5.5vw,4.8rem);
+  color:var(--white);margin-bottom:22px;
+  text-shadow:0 2px 40px rgba(0,0,0,.5);
+}
+.hero h1 .accent{
+  background:linear-gradient(95deg,var(--gold-3),var(--gold),var(--timber-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-lead{font-size:1.1rem;color:rgba(245,243,239,.78);max-width:520px;margin-bottom:36px;line-height:1.7;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:.9rem;transition:transform .2s ease,box-shadow .2s ease,background .2s;position:relative;overflow:hidden;}
+.btn svg{width:16px;height:16px;flex:none;}
+.btn:hover{transform:translateY(-2px);}
+.btn-gold{background:linear-gradient(95deg,var(--gold-2),var(--gold));color:#1c1005;}
+.btn-gold:hover{box-shadow:var(--glow-gold);}
+.btn-ghost{border:1px solid rgba(245,243,239,.3);color:var(--white);}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:var(--glow-cyan);}
+.btn-wa{background:var(--wa);color:#fff;}
+.btn-wa:hover{box-shadow:var(--glow-wa);}
+.btn-dark{background:var(--ink);color:var(--white);}
+.btn-dark:hover{background:#1c2630;}
+.magnetic{will-change:transform;}
+
+.hero-stats{display:flex;gap:36px;padding-top:32px;border-top:1px solid rgba(245,243,239,.12);}
+.hstat .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.8rem;color:var(--white);}
+.hstat .lbl{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-2);margin-top:2px;}
+
+.hero-floating{position:absolute;z-index:2;}
+.hf-1{top:28%;right:5%;}
+.hf-2{bottom:28%;right:8%;}
+.float-chip{background:rgba(7,9,12,.7);border:1px solid rgba(200,144,56,.35);backdrop-filter:blur(12px);color:var(--white);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.06em;padding:8px 14px;border-radius:10px;animation:float 5s ease-in-out infinite;}
+.float-chip .chip-label{color:var(--gold-2);display:block;font-size:.58rem;margin-bottom:2px;}
+.hf-2 .float-chip{animation-delay:-2.5s;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+.scroll-hint{position:absolute;bottom:28px;right:50%;transform:translateX(50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(245,243,239,.4);}
+.scroll-hint .line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(245,243,239,.4));animation:scrollline 1.8s ease-in-out infinite;}
+@keyframes scrollline{0%,100%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);}}
+.scroll-hint span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+
+/* ─── TICKER ─────────────────────────────────────────────────── */
+.ticker{background:var(--ink);color:var(--white);padding:18px 0;overflow:hidden;border-top:1px solid #1a2530;}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:scroll-x 30s linear infinite;width:max-content;}
+.ticker-track:hover{animation-play-state:paused;}
+.t-chip{font-family:'JetBrains Mono',monospace;font-size:.76rem;letter-spacing:.05em;color:rgba(245,243,239,.7);padding:0 32px;position:relative;}
+.t-chip::after{content:"·";position:absolute;right:0;color:var(--gold);transform:translateX(50%);}
+.t-chip b{color:var(--gold-2);}
+@keyframes scroll-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;}}
+
+/* ─── SECTION HEADS ─────────────────────────────────────────── */
+.sh{max-width:640px;margin-bottom:56px;}
+.sh .eyebrow{display:inline-block;margin-bottom:14px;color:var(--stone-2);}
+.sh h2{font-size:clamp(2rem,3.2vw,2.7rem);line-height:1.08;}
+.sh p{margin-top:14px;color:#555e5a;max-width:540px;font-size:1.02rem;}
+.sh.center{text-align:center;max-width:700px;margin-left:auto;margin-right:auto;}
+.sh.light .eyebrow{color:var(--cyan);}
+.sh.light h2{color:var(--white);}
+.sh.light p{color:rgba(245,243,239,.6);}
+
+/* ─── ABOUT ──────────────────────────────────────────────────── */
+.about{background:var(--white);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.about-text p{color:#3d4a46;margin-top:16px;font-size:1.02rem;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px;}
+.astat{padding-left:18px;border-left:2px solid var(--gold);}
+.astat .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2.2rem;color:var(--ink);line-height:1.1;}
+.astat .lbl{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--stone);margin-top:4px;}
+.about-img-wrap{position:relative;}
+.about-img{width:100%;height:520px;object-fit:cover;border-radius:var(--r);display:block;}
+.about-img-badge{position:absolute;bottom:24px;left:24px;background:rgba(7,9,12,.8);backdrop-filter:blur(12px);border:1px solid rgba(200,144,56,.3);border-radius:12px;padding:14px 18px;color:var(--white);}
+.about-img-badge .aib-num{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:var(--gold-2);}
+.about-img-badge .aib-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,243,239,.6);margin-top:2px;}
+
+/* ─── GALLERY ─────────────────────────────────────────────────── */
+.gallery{background:var(--ink);padding:110px 0 90px;}
+.gallery-featured{position:relative;border-radius:var(--r);overflow:hidden;margin-bottom:14px;cursor:pointer;}
+.gallery-featured img{width:100%;height:520px;object-fit:cover;object-position:center 40%;transition:transform 1s cubic-bezier(.16,1,.3,1);}
+.gallery-featured:hover img{transform:scale(1.03);}
+.gallery-featured::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,12,.92) 0%,rgba(7,9,12,.3) 45%,transparent 70%);}
+.gal-info{position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:1;}
+.gal-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-2);margin-bottom:10px;}
+.gal-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.7rem;color:var(--white);margin-bottom:10px;}
+.gal-specs{display:flex;gap:10px;flex-wrap:wrap;}
+.gal-spec{background:rgba(245,243,239,.1);border:1px solid rgba(245,243,239,.15);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:4px 10px;color:rgba(245,243,239,.8);}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.gal-card{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--slate);}
+.gal-card img{width:100%;height:280px;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);}
+.gal-card:hover img{transform:scale(1.08);}
+.gal-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,12,.85) 0%,transparent 55%);transition:opacity .3s;}
+.gal-card-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:1;}
+.gal-card-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-2);}
+.gal-card-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;color:var(--white);margin-top:4px;line-height:1.3;}
+.gal-card-specs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;transform:translateY(8px);opacity:0;transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .35s;}
+.gal-card:hover .gal-card-specs{transform:translateY(0);opacity:1;}
+
+.gallery-cta{text-align:center;margin-top:48px;}
+.gallery-cta p{color:rgba(245,243,239,.55);font-size:.95rem;margin-top:12px;}
+
+/* ─── SERVICES ───────────────────────────────────────────────── */
+.services{background:var(--paper-2);}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.svc{grid-column:span 2;background:var(--white);border:1px solid var(--concrete);border-radius:var(--r);padding:32px;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s;}
+.svc.small{grid-column:span 1;padding:28px 24px;}
+.svc::before{content:"";position:absolute;inset:0;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,var(--cyan),transparent 40%,var(--gold));opacity:0;transition:opacity .3s;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+.svc:hover{transform:translateY(-5px);box-shadow:0 20px 48px -18px rgba(28,38,48,.2);}
+.svc:hover::before{opacity:1;}
+.svc .sn{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold);}
+.svc-icon{width:34px;height:34px;color:var(--slate);margin:14px 0 12px;}
+.svc h3{font-size:1.1rem;margin-bottom:8px;}
+.svc p{font-size:.88rem;color:#5a6260;line-height:1.55;}
+.svc .svc-link{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:.82rem;font-weight:600;color:var(--gold);transition:gap .2s;}
+.svc:hover .svc-link{gap:9px;}
+
+/* ─── PLANS ───────────────────────────────────────────────────── */
+.plans{background:var(--white);}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.plan{position:relative;border:1px solid var(--concrete);padding:28px 22px 24px;border-radius:var(--r);background:var(--white);transition:transform .25s,box-shadow .25s,border-color .25s;}
+.plan:hover{border-color:transparent;transform:translateY(-6px);box-shadow:0 22px 44px -16px rgba(28,38,48,.25);}
+.plan.featured{background:linear-gradient(170deg,#fff,#fdf8ee);box-shadow:0 0 0 2px var(--gold),0 28px 56px -20px rgba(200,144,56,.35);transform:scale(1.03);}
+.plan.featured:hover{transform:scale(1.03) translateY(-4px);}
+.plan-badge{position:absolute;top:-12px;left:18px;background:linear-gradient(95deg,var(--gold-2),var(--gold));color:#1c1005;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;}
+.plan-icon{margin-bottom:16px;}
+.plan-icon svg{width:100%;height:50px;color:var(--slate);}
+.plan-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;color:var(--ink);}
+.plan-price{font-family:'JetBrains Mono',monospace;font-size:.88rem;color:var(--gold);margin-top:6px;}
+.plan-features{margin-top:14px;display:flex;flex-direction:column;gap:7px;}
+.plan-features li{display:flex;align-items:flex-start;gap:8px;font-size:.83rem;color:#555e5a;list-style:none;}
+.plan-features li::before{content:"✓";color:var(--gold);font-weight:700;flex:none;margin-top:1px;}
+.plan .btn{width:100%;justify-content:center;margin-top:20px;}
+
+/* ─── PROCESS ─────────────────────────────────────────────────── */
+.process{background:var(--paper-2);}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:14px;position:relative;}
+.steps-line{position:absolute;top:16px;left:0;right:0;height:1px;background:var(--concrete);}
+.steps-fill{position:absolute;top:16px;left:0;height:1px;background:linear-gradient(90deg,var(--gold),var(--cyan));width:0%;transition:width 1.4s cubic-bezier(.16,1,.3,1);}
+.step{padding:38px 28px 0;position:relative;}
+.step-dot{position:absolute;top:9px;left:28px;width:16px;height:16px;border-radius:50%;background:var(--white);border:2px solid var(--gold);box-shadow:0 0 0 4px var(--paper-2);transition:background .4s,box-shadow .4s;}
+.steps.active .step-dot{background:var(--gold);}
+.step .pn{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--gold);}
+.step h3{margin-top:12px;font-size:1.05rem;}
+.step p{font-size:.86rem;color:#5a6260;margin-top:8px;line-height:1.55;}
+
+/* ─── FAQ ─────────────────────────────────────────────────────── */
+.faq{background:var(--white);}
+.faq-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+.faq-list{margin-top:8px;}
+.faq-item{border-bottom:1px solid var(--concrete);}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;color:var(--ink);text-align:left;cursor:pointer;transition:color .2s;}
+.faq-q:hover{color:var(--gold);}
+.faq-q .icon{width:20px;height:20px;flex:none;border:1.5px solid var(--concrete);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.16,1,.3,1),background .2s,border-color .2s;}
+.faq-q .icon::before,.faq-q .icon::after{content:"";position:absolute;background:currentColor;border-radius:2px;transition:transform .35s;}
+.faq-q .icon::before{width:8px;height:1.5px;}
+.faq-q .icon::after{width:1.5px;height:8px;}
+.faq-item.open .faq-q{color:var(--gold);}
+.faq-item.open .faq-q .icon{background:var(--gold);border-color:var(--gold);color:#fff;transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1);}
+.faq-answer-inner{padding:0 0 20px;font-size:.95rem;color:#4a5450;line-height:1.7;}
+.faq-aside{position:sticky;top:96px;}
+.faq-aside-card{background:linear-gradient(160deg,var(--slate),var(--ink));border-radius:var(--r);padding:36px;color:var(--white);overflow:hidden;position:relative;}
+.faq-aside-card::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--cyan-dim) 1px,transparent 1px),linear-gradient(90deg,var(--cyan-dim) 1px,transparent 1px);background-size:30px 30px;opacity:.5;}
+.faq-aside-card h3{font-size:1.5rem;position:relative;z-index:1;}
+.faq-aside-card p{color:rgba(245,243,239,.7);margin-top:10px;font-size:.92rem;position:relative;z-index:1;}
+.faq-aside-card .btn{margin-top:24px;position:relative;z-index:1;}
+
+/* ─── TESTIMONIALS ───────────────────────────────────────────── */
+.testimonials{background:linear-gradient(160deg,var(--slate),var(--ink-2));padding:100px 0;}
+.t-row{display:flex;gap:18px;overflow:hidden;margin-top:10px;}
+.t-track{display:flex;gap:18px;animation:scroll-x 36s linear infinite;width:max-content;}
+.t-track:hover{animation-play-state:paused;}
+.t-card{width:340px;flex:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);border-radius:var(--r);padding:26px;}
+.t-stars{color:var(--gold-2);font-size:.9rem;letter-spacing:3px;margin-bottom:14px;}
+.t-quote{font-size:.93rem;color:rgba(245,243,239,.8);line-height:1.65;}
+.t-who{margin-top:18px;display:flex;align-items:center;gap:10px;}
+.t-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--stone));display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.8rem;color:#fff;flex:none;}
+.t-name{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;color:var(--cyan);}
+.t-sub{font-size:.76rem;color:rgba(245,243,239,.4);margin-top:2px;}
+.t-note{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold-2);border:1px dashed rgba(200,144,56,.4);padding:8px 14px;border-radius:10px;margin-bottom:28px;}
+
+/* ─── CONTACT ─────────────────────────────────────────────────── */
+.contact{background:var(--paper);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start;}
+.contact-info p{color:#444d49;margin-top:14px;font-size:.98rem;}
+.cinfo-list{margin-top:28px;display:flex;flex-direction:column;gap:20px;}
+.cinfo-row{display:flex;gap:14px;align-items:flex-start;}
+.cinfo-icon{width:40px;height:40px;background:var(--white);border:1px solid var(--concrete);border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none;}
+.cinfo-icon svg{width:18px;height:18px;color:var(--gold);}
+.cinfo-lbl{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--stone);}
+.cinfo-val{font-weight:600;font-size:.95rem;margin-top:2px;}
+.cinfo-val a:hover{color:var(--gold);}
+
+.wa-cta{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#128c50,#25d366);border-radius:var(--r);padding:20px 24px;margin-top:28px;color:#fff;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.wa-cta:hover{transform:translateY(-2px);box-shadow:var(--glow-wa);}
+.wa-cta .wa-icon{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
+.wa-cta .wa-icon svg{width:24px;height:24px;}
+.wa-cta .wa-text-main{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;}
+.wa-cta .wa-text-sub{font-size:.8rem;opacity:.85;margin-top:2px;}
+.wa-cta .wa-arrow{margin-left:auto;font-size:1.2rem;}
+
+.social-bar{display:flex;gap:10px;margin-top:24px;}
+.soc{width:40px;height:40px;border:1px solid var(--concrete);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s,color .2s,box-shadow .2s;}
+.soc svg{width:16px;height:16px;}
+.soc:hover{background:var(--ink);border-color:var(--ink);color:var(--cyan);box-shadow:var(--glow-cyan);}
+
+.contact-form-wrap{background:var(--white);border:1px solid var(--concrete);border-radius:var(--r);padding:38px;box-shadow:0 24px 60px -28px rgba(28,38,48,.15);}
+.contact-form-wrap h3{font-size:1.3rem;margin-bottom:6px;}
+.contact-form-wrap p{font-size:.88rem;color:#6b7570;margin-bottom:24px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.09em;text-transform:uppercase;color:#777;margin-bottom:6px;}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--concrete);background:var(--paper);padding:12px 14px;border-radius:10px;font-family:'Inter',sans-serif;font-size:.93rem;color:var(--ink);transition:border-color .2s,box-shadow .2s;}
+.field textarea{resize:vertical;min-height:90px;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,144,56,.12);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.contact-form-wrap .btn{width:100%;justify-content:center;margin-top:6px;}
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+footer{background:var(--ink);color:#8a9aa4;padding:56px 0 28px;position:relative;}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--cyan),transparent);}
+.foot-main{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.foot-brand .brand{color:var(--white);font-size:1.05rem;}
+.foot-brand p{font-size:.86rem;color:#6a7f8a;margin-top:14px;max-width:260px;line-height:1.6;}
+.foot-brand .social-bar{margin-top:20px;}
+.foot-col h4{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:16px;}
+.foot-col ul{display:flex;flex-direction:column;gap:9px;list-style:none;}
+.foot-col ul li a{font-size:.85rem;color:#6a7f8a;transition:color .2s;}
+.foot-col ul li a:hover{color:var(--gold-2);}
+.foot-bottom{border-top:1px solid #192430;padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.78rem;color:#4a5f6a;}
+.foot-bottom a{color:#4a5f6a;transition:color .2s;}
+.foot-bottom a:hover{color:var(--gold-2);}
+
+/* ─── MEDIA QUERIES ────────────────────────────────────────────── */
+@media (max-width:1100px){
+  .foot-main{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:980px){
+  .about-grid,.contact-grid,.faq-grid{grid-template-columns:1fr;}
+  .about-img{height:360px;}
+  .faq-aside{position:static;}
+  .bento{grid-template-columns:repeat(2,1fr);}
+  .svc,.svc.small{grid-column:span 1;}
+  .plans-grid{grid-template-columns:repeat(2,1fr);}
+  .plan.featured{transform:none;}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:28px;}
+  .steps-line,.steps-fill{display:none;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+  .hero-floating{display:none;}
+}
+@media (max-width:680px){
+  .navlinks{
+    position:fixed;top:72px;left:0;right:0;
+    background:rgba(7,9,12,.96);backdrop-filter:blur(20px);
+    flex-direction:column;align-items:flex-start;
+    padding:20px 32px 28px;border-bottom:1px solid #1a2530;
+    display:none;gap:16px;
+  }
+  .navlinks.open{display:flex;}
+  .navtoggle{display:block;}
+  .nav-wa{font-size:.75rem;padding:7px 14px;}
+  .hero h1{font-size:clamp(2.2rem,8vw,3.2rem);}
+  .hero-stats{gap:24px;flex-wrap:wrap;}
+  .gallery-grid{grid-template-columns:1fr;}
+  .plans-grid{grid-template-columns:1fr;}
+  .bento{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .foot-main{grid-template-columns:1fr 1fr;}
+  .foot-main .foot-brand{grid-column:span 2;}
+  section{padding:80px 0;}
+  .wrap{padding:0 20px;}
+}
+@media (max-width:420px){
+  .foot-main{grid-template-columns:1fr;}
+  .foot-main .foot-brand{grid-column:span 1;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="cursor-glow"></div>
+
+<!-- ─── NAV ──────────────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+        <rect x="1" y="1" width="30" height="30" stroke="var(--gold)" stroke-width="1.2"/>
+        <path d="M6 24V14L16 6L26 14V24" stroke="var(--white)" stroke-width="1.5"/>
+        <path d="M11 24V17H21V24" stroke="var(--gold-2)" stroke-width="1.5"/>
+        <rect x="14" y="17" width="4" height="7" fill="var(--gold)" opacity=".3"/>
+      </svg>
+      OM CITY DESIGNS
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#gallery">Portfolio</a>
+      <a href="#services">Services</a>
+      <a href="#plans">House Plans</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-wa magnetic" href="https://wa.me/263773769227" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp Us
+    </a>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────────── -->
+<header class="hero" id="top">
+  <div class="hero-bg" id="heroBg"></div>
+
+  <div class="hero-floating hf-1">
+    <div class="float-chip">
+      <span class="chip-label">3D Render</span>
+      HILLSIDE VILLA · BORROWDALE
+    </div>
+  </div>
+  <div class="hero-floating hf-2">
+    <div class="float-chip">
+      <span class="chip-label">Status</span>
+      REV. 03 · COUNCIL APPROVED
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:72px;">
+    <div class="hero-content">
+      <div class="hero-eyebrow mono reveal is-in">
+        <span class="dot"></span>
+        Harare, Zimbabwe &nbsp;·&nbsp; Since 2016
+      </div>
+      <h1 class="reveal is-in" id="heroHeadline">
+        Architecture for the life<br>you're <span class="accent">building.</span>
+      </h1>
+      <p class="hero-lead reveal is-in delay-1">
+        OM City Designs turns your stand into a home worth coming back to — house plans from $99, photoreal 3D visualisation, construction management and interior design, all from one studio in Harare.
+      </p>
+      <div class="hero-ctas reveal is-in delay-2">
+        <a class="btn btn-gold magnetic" href="#plans">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18M9 9v12M3 3h18v18H3z"/></svg>
+          Browse House Plans
+        </a>
+        <a class="btn btn-ghost magnetic" href="#gallery">View Our Work</a>
+        <a class="btn btn-wa magnetic" href="https://wa.me/263773769227" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Now
+        </a>
+      </div>
+      <div class="hero-stats reveal is-in delay-3">
+        <div class="hstat">
+          <div class="num" data-count="33800">0</div>
+          <div class="lbl">Facebook community</div>
+        </div>
+        <div class="hstat">
+          <div class="num">$99</div>
+          <div class="lbl">Plans from</div>
+        </div>
+        <div class="hstat">
+          <div class="num" data-count="8">0</div>
+          <div class="lbl">Years in Harare</div>
+        </div>
+        <div class="hstat">
+          <div class="num" data-count="6">0</div>
+          <div class="lbl">Services</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="line"></div>
+    <span>Scroll to explore</span>
+  </div>
+</header>
+
+<!-- ─── TICKER ─────────────────────────────────────────────────────── -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="t-chip"><b>33,800+</b> Facebook followers</span>
+    <span class="t-chip">House plans from <b>$99</b></span>
+    <span class="t-chip">Serving <b>Harare &amp; beyond</b></span>
+    <span class="t-chip"><b>Photoreal</b> 3D renders included</span>
+    <span class="t-chip">Plans · Renovations · 3D Modelling · Construction · Interiors · Landscape</span>
+    <span class="t-chip"><b>Council-ready</b> documentation</span>
+    <span class="t-chip">WhatsApp <b>+263 773 769 227</b></span>
+    <span class="t-chip"><b>33,800+</b> Facebook followers</span>
+    <span class="t-chip">House plans from <b>$99</b></span>
+    <span class="t-chip">Serving <b>Harare &amp; beyond</b></span>
+    <span class="t-chip"><b>Photoreal</b> 3D renders included</span>
+    <span class="t-chip">Plans · Renovations · 3D Modelling · Construction · Interiors · Landscape</span>
+    <span class="t-chip"><b>Council-ready</b> documentation</span>
+    <span class="t-chip">WhatsApp <b>+263 773 769 227</b></span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─────────────────────────────────────────────────────── -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <span class="mono eyebrow" style="color:var(--stone-2)">Who we are</span>
+        <h2 style="margin-top:14px;font-size:clamp(2rem,3vw,2.7rem);">A Harare studio that thinks in blueprints and builds in stone.</h2>
+        <div class="about-text">
+          <p>OM City Designs is an architectural and construction practice born and built in Harare. We design homes, interiors and liveable communities — and we stay close to every project from first sketch to the final coat of paint.</p>
+          <p>Building in Zimbabwe has its own realities: stand sizes, council requirements, local materials and budgets that don't always appear in foreign-trained textbooks. We've spent eight years learning those realities so you don't have to.</p>
+        </div>
+        <div class="about-stats">
+          <div class="astat"><div class="num" data-count="33800">0</div><div class="lbl">Facebook community</div></div>
+          <div class="astat"><div class="num">$99</div><div class="lbl">Plans start from</div></div>
+          <div class="astat"><div class="num" data-count="8">0</div><div class="lbl">Years designing</div></div>
+          <div class="astat"><div class="num" data-count="6">0</div><div class="lbl">Services offered</div></div>
+        </div>
+      </div>
+      <div class="about-img-wrap reveal-right">
+        <img class="about-img" src="697173860_1518973569592194_734015889033901217_n.jpg" alt="Luxury villa design by OM City Designs, Harare" loading="lazy">
+        <div class="about-img-badge">
+          <div class="aib-num">650sqm</div>
+          <div class="aib-lbl">Covered area · Hillside Villa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ───────────────────────────────────────────────────── -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sh center light reveal">
+      <span class="mono eyebrow">Our work</span>
+      <h2>Renders that sell themselves.</h2>
+      <p>Every project shown here is a real commission — real clients, real stands, real briefs. This is what OM City Designs delivers.</p>
+    </div>
+
+    <!-- Featured -->
+    <div class="gallery-featured reveal">
+      <img src="690779575_1518973372925547_1655713321456651410_n.jpg" alt="Hillside Villa night render — OM City Designs" loading="lazy">
+      <div class="gal-info">
+        <div class="gal-tag">Luxury Residential · Harare</div>
+        <div class="gal-title">The Hillside Villa — Night Render</div>
+        <div class="gal-specs">
+          <span class="gal-spec">5 Bedrooms</span>
+          <span class="gal-spec">Pool + Terrace</span>
+          <span class="gal-spec">Stone &amp; Glass façade</span>
+          <span class="gal-spec">650sqm covered</span>
+          <span class="gal-spec">3D Render + Construction docs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-col grid -->
+    <div class="gallery-grid" style="margin-top:14px;">
+      <div class="gal-card reveal delay-1">
+        <img src="696240158_1518973592925525_7782591354063742915_n-2.jpg" alt="Villa rear elevation with pool" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Residential · Renovation</div>
+          <div class="gal-card-title">Villa Rear — Pool &amp; Terrace</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">Pool deck</span><span class="gal-spec">Glass balustrade</span>
+          </div>
+        </div>
+      </div>
+      <div class="gal-card reveal delay-2">
+        <img src="697146122_1518973572925527_5631273468953174939_n.jpg" alt="Villa side elevation, stone and glass" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Residential · New Build</div>
+          <div class="gal-card-title">Side Elevation — Stone &amp; Glass</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">Natural stone</span><span class="gal-spec">Floor-to-ceiling glass</span>
+          </div>
+        </div>
+      </div>
+      <div class="gal-card reveal delay-3">
+        <img src="689458071_1511774730312078_4457079377891496356_n.jpg" alt="Country bungalow with landscaping" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Residential · Country Home</div>
+          <div class="gal-card-title">Country Bungalow with Landscaping</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">3 Bedrooms</span><span class="gal-spec">Landscape design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2nd row -->
+    <div class="gallery-grid" style="margin-top:14px;grid-template-columns:1fr 1fr 1fr;">
+      <div class="gal-card reveal delay-1">
+        <img src="503786194_1250131536476400_8693011997790535574_n.jpg" alt="Modern duplex, stone and timber" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Residential · Duplex</div>
+          <div class="gal-card-title">Twin Duplex REFOM280</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">2×3 bed</span><span class="gal-spec">Covered carport</span>
+          </div>
+        </div>
+      </div>
+      <div class="gal-card reveal delay-2">
+        <img src="503543280_1250131856476368_3875149581639154706_n.jpg" alt="Duplex aerial view" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Residential · Aerial View</div>
+          <div class="gal-card-title">Duplex — Aerial Perspective</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">Shared pergola</span><span class="gal-spec">Stone cladding</span>
+          </div>
+        </div>
+      </div>
+      <div class="gal-card reveal delay-3">
+        <img src="11052602542701599920.jpeg" alt="Modern 3-bedroom bungalow" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Residential · Compact Design</div>
+          <div class="gal-card-title">Modern 3-Bedroom Bungalow</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">3 Bedrooms</span><span class="gal-spec">Timber &amp; plaster</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- commercial separate -->
+    <div style="margin-top:14px;" class="reveal">
+      <div class="gal-card" style="border-radius:var(--r);">
+        <img src="686167331_1511781346978083_4048182385277173160_n.jpg" alt="Commercial showroom design by OM City Designs" loading="lazy" style="height:300px;width:100%;object-fit:cover;object-position:center;">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Commercial · Retail Showroom</div>
+          <div class="gal-card-title">Commercial Showroom — Curtain Wall Façade</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">Floor-to-ceiling glazing</span><span class="gal-spec">Signage integration</span><span class="gal-spec">Parking design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-cta reveal">
+      <a class="btn btn-gold magnetic" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        Start your project
+      </a>
+      <p>We'd love to add your home to this portfolio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ──────────────────────────────────────────────────── -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sh reveal">
+      <span class="mono eyebrow">What we do</span>
+      <h2>Six services. One continuous process.</h2>
+      <p>Most clients start with a plan and end with a finished interior. You can also drop in at any stage — renovate, extend, or hand us a stand and a budget and we'll take it from there.</p>
+    </div>
+    <div class="bento">
+      <div class="svc reveal">
+        <span class="sn mono">01</span>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18"/><path d="M3 9h18M9 9v12"/></svg>
+        <h3>House Plans</h3>
+        <p>Ready-made and custom floor plans for 1 to 5+ bedroom homes and cottages, priced from $99. Our flagship service — fast, affordable, and council-ready.</p>
+        <a class="svc-link" href="#plans">Browse plans →</a>
+      </div>
+      <div class="svc small reveal delay-1">
+        <span class="sn mono">02</span>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 7l3 3-9 9H5v-3z"/><path d="M17 4l3 3"/></svg>
+        <h3>Renovations</h3>
+        <p>Extensions and upgrades that work with what's already standing — planned, permitted and built.</p>
+        <a class="svc-link" href="#contact">Enquire →</a>
+      </div>
+      <div class="svc small reveal delay-2">
+        <span class="sn mono">03</span>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
+        <h3>3D Visualisation</h3>
+        <p>Photoreal renders before a brick is laid. See your home — every material, every light angle — before you commit.</p>
+        <a class="svc-link" href="#gallery">See examples →</a>
+      </div>
+      <div class="svc small reveal delay-1">
+        <span class="sn mono">04</span>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V10l4-3 4 3v11M13 21v-7l4-2 4 2v7"/></svg>
+        <h3>Construction</h3>
+        <p>On-site project management from groundbreak to handover. We manage the build so you don't have to.</p>
+        <a class="svc-link" href="#contact">Talk to us →</a>
+      </div>
+      <div class="svc small reveal delay-2">
+        <span class="sn mono">05</span>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13h18M5 13V8h14v5M8 21v-4h8v4"/></svg>
+        <h3>Interior Design</h3>
+        <p>Layouts and finishes chosen for how you actually live — not just how rooms look in a brochure.</p>
+        <a class="svc-link" href="#contact">Start here →</a>
+      </div>
+      <div class="svc small reveal delay-3">
+        <span class="sn mono">06</span>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v6M5 21c0-5 3-8 7-8s7 3 7 8M3 21h18"/></svg>
+        <h3>Landscape Design</h3>
+        <p>Gardens, driveways and outdoor entertainment areas planned with the house, not as an afterthought.</p>
+        <a class="svc-link" href="#contact">Enquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PLANS ──────────────────────────────────────────────────────── -->
+<section class="plans" id="plans">
+  <div class="wrap">
+    <div class="sh reveal">
+      <span class="mono eyebrow">Ready-made plans</span>
+      <h2>Pick a starting point, or bring us your stand size.</h2>
+      <p>Every category covers a range of layouts and budgets. Every plan can be customised — talk to us before you pay for something that may already be drawn.</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan reveal">
+        <div class="plan-icon"><svg viewBox="0 0 80 54" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="10" width="72" height="38"/></svg></div>
+        <div class="plan-name">Cottage</div>
+        <div class="plan-price">from $110</div>
+        <ul class="plan-features">
+          <li>Studio or 1-room layout</li>
+          <li>Floor plan + elevations</li>
+          <li>Ideal for servants' quarters</li>
+        </ul>
+        <a class="btn btn-dark" href="#contact">Get this plan</a>
+      </div>
+      <div class="plan reveal delay-1">
+        <div class="plan-icon"><svg viewBox="0 0 80 54" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="6" width="72" height="42"/><path d="M40 6v42"/></svg></div>
+        <div class="plan-name">1 Bedroom</div>
+        <div class="plan-price">from $99</div>
+        <ul class="plan-features">
+          <li>Compact &amp; efficient layouts</li>
+          <li>Bathroom + kitchenette options</li>
+          <li>Floor plan + elevations</li>
+        </ul>
+        <a class="btn btn-dark" href="#contact">Get this plan</a>
+      </div>
+      <div class="plan reveal delay-2">
+        <div class="plan-icon"><svg viewBox="0 0 80 54" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="6" width="72" height="42"/><path d="M28 6v42M52 6v18h24"/></svg></div>
+        <div class="plan-name">2 Bedroom</div>
+        <div class="plan-price">from $150</div>
+        <ul class="plan-features">
+          <li>Open-plan or separate living</li>
+          <li>Single or double garage option</li>
+          <li>Floor plan + elevations</li>
+        </ul>
+        <a class="btn btn-dark" href="#contact">Get this plan</a>
+      </div>
+      <div class="plan featured reveal">
+        <span class="plan-badge">Most requested</span>
+        <div class="plan-icon"><svg viewBox="0 0 80 54" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="6" width="72" height="42"/><path d="M28 6v42M52 6v18h24M28 30h24"/></svg></div>
+        <div class="plan-name">3 Bedroom</div>
+        <div class="plan-price">from $250</div>
+        <ul class="plan-features">
+          <li>Master en-suite option</li>
+          <li>Lounge + dining + kitchen</li>
+          <li>Floor plan, elevations + 3D</li>
+          <li>Council submission ready</li>
+        </ul>
+        <a class="btn btn-gold" href="#contact">Get this plan</a>
+      </div>
+      <div class="plan reveal delay-1">
+        <div class="plan-icon"><svg viewBox="0 0 80 54" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="6" width="72" height="42"/><path d="M22 6v42M44 6v42M60 6v18h16M60 30h16"/></svg></div>
+        <div class="plan-name">4 Bedroom</div>
+        <div class="plan-price">from $350</div>
+        <ul class="plan-features">
+          <li>Multiple en-suite options</li>
+          <li>Double garage standard</li>
+          <li>Floor plan, elevations + 3D</li>
+        </ul>
+        <a class="btn btn-dark" href="#contact">Get this plan</a>
+      </div>
+      <div class="plan reveal delay-2">
+        <div class="plan-icon"><svg viewBox="0 0 80 54" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="6" width="72" height="42"/><path d="M20 6v42M38 6v42M56 6v42M56 18h20M56 34h20"/></svg></div>
+        <div class="plan-name">5+ Bedroom</div>
+        <div class="plan-price">from $500</div>
+        <ul class="plan-features">
+          <li>Luxury &amp; multi-storey options</li>
+          <li>Pool, gym, bar rooms</li>
+          <li>Full documentation package</li>
+        </ul>
+        <a class="btn btn-dark" href="#contact">Get this plan</a>
+      </div>
+    </div>
+    <p style="margin-top:28px;color:#6b7570;font-size:.88rem;text-align:center;">Prices are a starting guide — every plan is customisable to your stand, budget and lifestyle. <a href="#contact" style="color:var(--gold);font-weight:600;">Talk to us first →</a></p>
+  </div>
+</section>
+
+<!-- ─── PROCESS ────────────────────────────────────────────────────── -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="sh reveal">
+      <span class="mono eyebrow">How a project runs</span>
+      <h2>From first conversation to handing over the keys.</h2>
+    </div>
+    <div class="steps reveal" id="timeline">
+      <div class="steps-line"></div>
+      <div class="steps-fill" id="timelineFill"></div>
+      <div class="step">
+        <span class="step-dot"></span>
+        <span class="pn mono">01</span>
+        <h3>Brief</h3>
+        <p>We listen. Stand size, budget, how your household actually wants to live. No pressure, just a conversation.</p>
+      </div>
+      <div class="step">
+        <span class="step-dot"></span>
+        <span class="pn mono">02</span>
+        <h3>Design</h3>
+        <p>Floor plans and 3D visuals, revised with you until the layout earns an unqualified yes.</p>
+      </div>
+      <div class="step">
+        <span class="step-dot"></span>
+        <span class="pn mono">03</span>
+        <h3>Documentation</h3>
+        <p>Council-ready drawings and a clear scope of work so approvals and contractor quotes move fast.</p>
+      </div>
+      <div class="step">
+        <span class="step-dot"></span>
+        <span class="pn mono">04</span>
+        <h3>Build &amp; Finish</h3>
+        <p>Construction and interior fit-out, managed on site by our team until the day you get your keys.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ────────────────────────────────────────────────────────── -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div>
+        <div class="sh reveal">
+          <span class="mono eyebrow">Questions &amp; answers</span>
+          <h2>Everything you're wondering about.</h2>
+          <p>These are the questions we hear most often. If yours isn't here, just WhatsApp us — most enquiries get a same-day reply.</p>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item open">
+            <button class="faq-q">
+              How much does a house plan cost?
+              <span class="icon"></span>
+            </button>
+            <div class="faq-answer" style="max-height:300px;">
+              <div class="faq-answer-inner">Plans start at $99 for a 1-bedroom layout and go up based on size and complexity. A 3-bedroom plan — our most requested — starts at $250. These prices include the full set of drawings (floor plan, elevations and sections). 3D visualisation is included for 3-bedroom and larger plans. Custom plans are quoted individually based on your stand and brief.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              Can I customise a ready-made plan?
+              <span class="icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Yes — all our plans are starting points, not final products. We routinely adjust layouts for specific stand shapes, add rooms, move doors and windows, change the roof pitch, and modify the exterior aesthetic. A customisation fee applies depending on the extent of changes. Talk to us before you purchase: if you have a clear brief, a custom plan from scratch is often not much more expensive than a heavily modified standard one.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              Do you handle council submissions in Harare?
+              <span class="icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Yes. Our documentation package includes council-ready drawings formatted to Harare City Council requirements. We can also advise on the submission process and liaise with council on your behalf if required. Lead times for council approval vary — we'll give you a realistic estimate based on your suburb and project type.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              How long does the whole process take?
+              <span class="icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">For a standard 3-bedroom house plan with 3D renders: 7–14 working days from deposit to final documents. Council approval typically takes 4–8 weeks. Construction timelines depend on the size of the project and contractor availability — we'll scope that out with you during the brief. We don't give timelines we can't keep.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              Do you design and build outside Harare?
+              <span class="icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">We design for anywhere in Zimbabwe and can provide construction documentation for any location. On-site construction management is primarily Harare-based, but we handle projects in Bulawayo, Mutare, Masvingo and other centres — contact us to discuss your location and we'll be honest about what we can manage.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              Can you work with my existing foundation or structure?
+              <span class="icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Absolutely. Renovations and extensions are a core part of what we do. We'll assess what's there, design around the existing structure where it makes sense, and advise honestly where demolishing and rebuilding would actually be cheaper or safer. A site visit is usually needed before we can quote on renovation work.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-aside reveal-right">
+        <div class="faq-aside-card">
+          <h3>Still have questions?</h3>
+          <p>WhatsApp us directly — most enquiries get a same-day reply. Or call during business hours and speak to one of our designers.</p>
+          <a class="btn btn-wa" href="https://wa.me/263773769227" target="_blank" rel="noopener" style="margin-top:24px;display:inline-flex;">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp +263 773 769 227
+          </a>
+          <a class="btn btn-ghost" href="tel:+263773769227" style="margin-top:12px;margin-left:0;display:inline-flex;border-color:rgba(245,243,239,.25);color:var(--white);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call +263 773 769 227
+          </a>
+        </div>
+
+        <!-- Social proof card -->
+        <div style="margin-top:16px;background:var(--paper);border:1px solid var(--concrete);border-radius:var(--r);padding:24px;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:48px;height:48px;background:#1877f2;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none;">
+              <svg style="width:24px;height:24px;fill:#fff;" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;" data-count="33800">0</div>
+              <div style="font-size:.8rem;color:var(--stone);font-family:'JetBrains Mono',monospace;letter-spacing:.05em;text-transform:uppercase;">Facebook community</div>
+            </div>
+          </div>
+          <p style="margin-top:14px;font-size:.85rem;color:#555e5a;">Over 33,800 Zimbabweans follow OM City Designs for house plan inspiration, design tips and project reveals.</p>
+          <a href="https://www.facebook.com/om.city.designs/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:.82rem;font-weight:600;color:#1877f2;">Follow us on Facebook →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ───────────────────────────────────────────────── -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="sh center light reveal">
+      <span class="mono eyebrow">Client reviews</span>
+      <h2>What it's like to build with us.</h2>
+    </div>
+    <div class="t-note reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      Swap in real client quotes before going live — your Facebook reviews are a great source.
+    </div>
+    <div class="t-row reveal">
+      <div class="t-track">
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"The 3D render blew me away. I could see exactly what my house would look like before we broke ground. The whole team was responsive and professional throughout."</p>
+          <div class="t-who">
+            <div class="t-avatar">T</div>
+            <div><div class="t-name">Tendai M.</div><div class="t-sub">3-bedroom build · Borrowdale</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"I came with a rough idea and a tight budget. They worked within it and gave me a plan I'm genuinely proud of. Would recommend to anyone building in Harare."</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--timber),var(--gold));">R</div>
+            <div><div class="t-name">Rudo N.</div><div class="t-sub">2-bedroom plan · Ruwa</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"Fast turnaround, excellent communication and the final drawings were council-ready first time. No back and forth. Just sorted."</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--slate),var(--stone-2));">F</div>
+            <div><div class="t-name">Farai K.</div><div class="t-sub">Renovation + extension · Eastlea</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"The interior design service transformed what was going to be a plain house into a home with real character. Every finish was intentional."</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">C</div>
+            <div><div class="t-name">Chiedza P.</div><div class="t-sub">Interior design · Avondale</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"We gave them a stand on a slope and they designed something that works with the terrain beautifully. We never thought it would look this good."</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--gold),var(--timber-2));">S</div>
+            <div><div class="t-name">Simba &amp; Anesu T.</div><div class="t-sub">5-bedroom villa · Mount Pleasant</div></div>
+          </div>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"The 3D render blew me away. I could see exactly what my house would look like before we broke ground. The whole team was responsive and professional throughout."</p>
+          <div class="t-who">
+            <div class="t-avatar">T</div>
+            <div><div class="t-name">Tendai M.</div><div class="t-sub">3-bedroom build · Borrowdale</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"I came with a rough idea and a tight budget. They worked within it and gave me a plan I'm genuinely proud of. Would recommend to anyone building in Harare."</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--timber),var(--gold));">R</div>
+            <div><div class="t-name">Rudo N.</div><div class="t-sub">2-bedroom plan · Ruwa</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"Fast turnaround, excellent communication and the final drawings were council-ready first time. No back and forth. Just sorted."</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--slate),var(--stone-2));">F</div>
+            <div><div class="t-name">Farai K.</div><div class="t-sub">Renovation + extension · Eastlea</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"We gave them a stand on a slope and they designed something that works with the terrain beautifully. We never thought it would look this good."</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--gold),var(--timber-2));">S</div>
+            <div><div class="t-name">Simba &amp; Anesu T.</div><div class="t-sub">5-bedroom villa · Mount Pleasant</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─────────────────────────────────────────────────────── -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <span class="mono eyebrow" style="color:var(--stone-2)">Start a project</span>
+        <h2 style="margin-top:14px;font-size:clamp(1.9rem,3vw,2.6rem);">Tell us about your stand.</h2>
+        <p>Call, WhatsApp or drop us a message — most enquiries get a reply the same day.</p>
+
+        <div class="cinfo-list">
+          <div class="cinfo-row">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="cinfo-lbl">Call / WhatsApp</div>
+              <div class="cinfo-val"><a href="tel:+263773769227">+263 773 769 227</a></div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6 12 13 2 6"/></svg>
+            </div>
+            <div>
+              <div class="cinfo-lbl">Email</div>
+              <div class="cinfo-val"><a href="mailto:info@omcitydesigns.co.zw">info@omcitydesigns.co.zw</a></div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="cinfo-lbl">Office</div>
+              <div class="cinfo-val">18637 Donald McDonald Rd &amp; Nigel Philip Ave, Eastlea, Harare</div>
+            </div>
+          </div>
+        </div>
+
+        <a class="wa-cta" href="https://wa.me/263773769227?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20house%20plan." target="_blank" rel="noopener">
+          <div class="wa-icon">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div>
+            <div class="wa-text-main">Chat on WhatsApp</div>
+            <div class="wa-text-sub">Fastest way to get a quote — we reply same day</div>
+          </div>
+          <div class="wa-arrow">→</div>
+        </a>
+
+        <div class="social-bar" style="margin-top:24px;">
+          <a class="soc" href="https://www.facebook.com/om.city.designs/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a class="soc" href="https://www.instagram.com/omcitydesigns/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a class="soc" href="https://zw.linkedin.com/in/om-city-designs-80276b113" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/></svg>
+          </a>
+          <a class="soc" href="https://www.pinterest.com/omcitydesigns/" target="_blank" rel="noopener" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9.5 19c1-3.5 1.5-6 2.5-9.5M12 9.5c3 0 4.5 1.5 4.5 3.5s-1.5 3.5-3.5 3.5-2.5-1-2.5-2.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal-right">
+        <h3>Send us an enquiry</h3>
+        <p>Tell us about your project and we'll be in touch within one business day.</p>
+        <form onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="field"><label for="f-name">Name</label><input id="f-name" required placeholder="Your full name"></div>
+            <div class="field"><label for="f-phone">WhatsApp / Phone</label><input id="f-phone" required placeholder="+263 7xx xxx xxx"></div>
+          </div>
+          <div class="field"><label for="f-email">Email (optional)</label><input id="f-email" type="email" placeholder="your@email.com"></div>
+          <div class="field">
+            <label for="f-type">Project type</label>
+            <select id="f-type">
+              <option>House plan (ready-made)</option>
+              <option>House plan (custom)</option>
+              <option>Renovation / extension</option>
+              <option>3D visualisation</option>
+              <option>Construction management</option>
+              <option>Interior design</option>
+              <option>Landscape design</option>
+              <option>Commercial project</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-msg">Tell us about your stand</label><textarea id="f-msg" placeholder="Stand size, location, number of bedrooms, budget, any specific requirements…"></textarea></div>
+          <button class="btn btn-gold" type="submit" id="submitBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4z"/></svg>
+            Send enquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ──────────────────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="foot-main">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+            <rect x="1" y="1" width="30" height="30" stroke="var(--gold)" stroke-width="1.2"/>
+            <path d="M6 24V14L16 6L26 14V24" stroke="var(--white)" stroke-width="1.5"/>
+            <path d="M11 24V17H21V24" stroke="var(--gold-2)" stroke-width="1.5"/>
+          </svg>
+          OM CITY DESIGNS
+        </a>
+        <p>Harare's architectural studio for house plans, 3D visualisation, construction and interior design. Building Zimbabwe one home at a time since 2016.</p>
+        <div class="social-bar">
+          <a class="soc" href="https://www.facebook.com/om.city.designs/" target="_blank" rel="noopener" aria-label="Facebook" style="border-color:#1d2d3a;color:#6a7f8a;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a class="soc" href="https://www.instagram.com/omcitydesigns/" target="_blank" rel="noopener" aria-label="Instagram" style="border-color:#1d2d3a;color:#6a7f8a;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a class="soc" href="https://zw.linkedin.com/in/om-city-designs-80276b113" target="_blank" rel="noopener" aria-label="LinkedIn" style="border-color:#1d2d3a;color:#6a7f8a;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/></svg>
+          </a>
+          <a class="soc" href="https://www.pinterest.com/omcitydesigns/" target="_blank" rel="noopener" aria-label="Pinterest" style="border-color:#1d2d3a;color:#6a7f8a;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9.5 19c1-3.5 1.5-6 2.5-9.5M12 9.5c3 0 4.5 1.5 4.5 3.5s-1.5 3.5-3.5 3.5-2.5-1-2.5-2.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">House Plans</a></li>
+          <li><a href="#services">Renovations</a></li>
+          <li><a href="#services">3D Visualisation</a></li>
+          <li><a href="#services">Construction</a></li>
+          <li><a href="#services">Interior Design</a></li>
+          <li><a href="#services">Landscape Design</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>House Plans</h4>
+        <ul>
+          <li><a href="#plans">Cottage / Studio</a></li>
+          <li><a href="#plans">1 Bedroom</a></li>
+          <li><a href="#plans">2 Bedroom</a></li>
+          <li><a href="#plans">3 Bedroom</a></li>
+          <li><a href="#plans">4 Bedroom</a></li>
+          <li><a href="#plans">5+ Bedroom</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+263773769227">+263 773 769 227</a></li>
+          <li><a href="mailto:info@omcitydesigns.co.zw">info@omcitydesigns.co.zw</a></li>
+          <li><a href="https://wa.me/263773769227" target="_blank" rel="noopener">WhatsApp Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#gallery">Portfolio</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 OM City Designs. Harare, Zimbabwe.</span>
+      <span>House Plans · 3D Visualisation · Construction · Interior &amp; Landscape Design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* ── Nav scroll state ─────────────────────────────────── */
+const nav = document.getElementById('nav');
+function updateNav(){
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
+
+/* ── Mobile nav toggle ────────────────────────────────── */
+document.getElementById('navtoggle').addEventListener('click', ()=>{
+  document.getElementById('navlinks').classList.toggle('open');
+});
+document.querySelectorAll('.navlinks a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open'));
+});
+
+/* ── Scroll progress ───────────────────────────────────── */
+const progress = document.getElementById('progress');
+document.addEventListener('scroll',()=>{
+  const h = document.documentElement;
+  progress.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+},{passive:true});
+
+/* ── Cursor glow ───────────────────────────────────────── */
+const cursorGlow = document.getElementById('cursor-glow');
+let cx=0,cy=0,tx=0,ty=0;
+document.addEventListener('mousemove',(e)=>{ tx=e.clientX; ty=e.clientY; });
+(function animCursor(){
+  cx += (tx-cx)*0.1; cy += (ty-cy)*0.1;
+  cursorGlow.style.left=cx+'px'; cursorGlow.style.top=cy+'px';
+  requestAnimationFrame(animCursor);
+})();
+
+/* ── Hero parallax ─────────────────────────────────────── */
+const heroBg = document.getElementById('heroBg');
+if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+  document.addEventListener('scroll',()=>{
+    if(window.scrollY < window.innerHeight*1.5){
+      heroBg.style.transform='translateY('+(window.scrollY*0.35)+'px)';
+    }
+  },{passive:true});
+}
+
+/* ── Scroll reveal ─────────────────────────────────────── */
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); obs.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>{
+  if(!el.classList.contains('is-in')) obs.observe(el);
+});
+
+/* ── Counter animation ─────────────────────────────────── */
+const cObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target, target=parseInt(el.dataset.count,10);
+      const dur=1600, start=performance.now();
+      function step(now){
+        const p=Math.min((now-start)/dur,1);
+        const eased=1-Math.pow(1-p,3);
+        el.textContent=Math.floor(eased*target).toLocaleString();
+        if(p<1) requestAnimationFrame(step);
+        else el.textContent=target.toLocaleString();
+      }
+      requestAnimationFrame(step);
+      cObs.unobserve(el);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('[data-count]').forEach(el=>cObs.observe(el));
+
+/* ── Timeline fill ─────────────────────────────────────── */
+const timeline = document.getElementById('timeline');
+const fill = document.getElementById('timelineFill');
+if(timeline&&fill){
+  new IntersectionObserver((entries)=>{
+    if(entries[0].isIntersecting){ fill.style.width='100%'; timeline.classList.add('active'); }
+  },{threshold:.25}).observe(timeline);
+}
+
+/* ── Magnetic buttons ──────────────────────────────────── */
+if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+  document.querySelectorAll('.magnetic').forEach(btn=>{
+    btn.addEventListener('mousemove',(e)=>{
+      const r=btn.getBoundingClientRect();
+      const x=(e.clientX-r.left-r.width/2)*.22;
+      const y=(e.clientY-r.top-r.height/2)*.3;
+      btn.style.transform='translate('+x+'px,'+y+'px)';
+    });
+    btn.addEventListener('mouseleave',()=>{ btn.style.transform='translate(0,0)'; });
+  });
+}
+
+/* ── FAQ accordion ─────────────────────────────────────── */
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.faq-item');
+    const answer=item.querySelector('.faq-answer');
+    const inner=item.querySelector('.faq-answer-inner');
+    const isOpen=item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').style.maxHeight='0';
+    });
+    // open clicked if it was closed
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.maxHeight=inner.offsetHeight+40+'px';
+    }
+  });
+});
+// init first open
+(()=>{
+  const first=document.querySelector('.faq-item.open .faq-answer');
+  if(first){
+    const inner=document.querySelector('.faq-item.open .faq-answer-inner');
+    first.style.maxHeight=inner.offsetHeight+40+'px';
+  }
+})();
+
+/* ── Form submit ───────────────────────────────────────── */
+function handleFormSubmit(e){
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20 6L9 17l-5-5"/></svg> Sent — we\'ll be in touch!';
+  btn.style.background='linear-gradient(95deg,#52b788,#2d6a4f)';
+  btn.disabled=true;
+}
+</script>
+</body>
+</html>
