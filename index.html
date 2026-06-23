@@ -221,6 +221,21 @@ section{padding:110px 0;}
 .gal-card:hover .gal-card-specs{transform:translateY(0);opacity:1;}
 
 .gallery-cta{text-align:center;margin-top:48px;}
+/* ─── LIGHTBOX ───────────────────────────────────────────── */
+#lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.93);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+#lb.open{opacity:1;pointer-events:all;}
+#lb-img{max-width:88vw;max-height:78vh;object-fit:contain;border-radius:8px;transform:scale(.96);transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .2s;box-shadow:0 40px 80px rgba(0,0,0,.6);}
+#lb.open #lb-img{transform:scale(1);}
+#lb-caption{margin-top:18px;font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.02em;color:#fff;text-align:center;max-width:70vw;line-height:1.4;}
+#lb-counter{margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:rgba(245,243,239,.4);text-transform:uppercase;}
+#lb-close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+#lb-close:hover{background:rgba(255,255,255,.25);}
+#lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;}
+#lb-prev{left:20px;}
+#lb-next{right:20px;}
+#lb-prev:hover,#lb-next:hover{background:rgba(255,255,255,.25);transform:translateY(-50%) scale(1.08);}
+.lb-trigger img{transition:transform .8s cubic-bezier(.16,1,.3,1);}
+@media(max-width:600px){#lb-prev{left:8px;}#lb-next{right:8px;}}
 .gallery-cta p{color:rgba(245,243,239,.55);font-size:.95rem;margin-top:12px;}
 
 /* ─── SERVICES ───────────────────────────────────────────────── */
@@ -617,47 +632,106 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
     <!-- 2nd row -->
     <div class="gallery-grid" style="margin-top:14px;grid-template-columns:1fr 1fr 1fr;">
       <div class="gal-card reveal delay-1">
-        <img src="503786194_1250131536476400_8693011997790535574_n.jpg" alt="Modern duplex, stone and timber" loading="lazy">
+        <img src="3-bedroom-cottage.jpg" alt="3 Bedroom Cottage" loading="lazy">
         <div class="gal-card-info">
-          <div class="gal-card-tag">Residential · Duplex</div>
-          <div class="gal-card-title">Twin Duplex REFOM280</div>
+          <div class="gal-card-tag">Residential · Cottage</div>
+          <div class="gal-card-title">3 Bedroom Cottage</div>
           <div class="gal-card-specs">
-            <span class="gal-spec">2×3 bed</span><span class="gal-spec">Covered carport</span>
+            <span class="gal-spec">3 Bedrooms</span><span class="gal-spec">House plans</span>
           </div>
         </div>
       </div>
       <div class="gal-card reveal delay-2">
-        <img src="503543280_1250131856476368_3875149581639154706_n.jpg" alt="Duplex aerial view" loading="lazy">
+        <img src="4-bedroom-clusters.jpg" alt="4 Bedroom Clusters" loading="lazy">
         <div class="gal-card-info">
-          <div class="gal-card-tag">Residential · Aerial View</div>
-          <div class="gal-card-title">Duplex — Aerial Perspective</div>
+          <div class="gal-card-tag">Residential · Cluster</div>
+          <div class="gal-card-title">4 Bedroom Clusters</div>
           <div class="gal-card-specs">
-            <span class="gal-spec">Shared pergola</span><span class="gal-spec">Stone cladding</span>
+            <span class="gal-spec">4 Bedrooms</span><span class="gal-spec">Cluster development</span>
           </div>
         </div>
       </div>
       <div class="gal-card reveal delay-3">
-        <img src="11052602542701599920.jpeg" alt="Modern 3-bedroom bungalow" loading="lazy">
+        <img src="semi-detached-duplex-cluster-flats.jpg" alt="Semi Detached Duplex Cluster Flats" loading="lazy">
         <div class="gal-card-info">
-          <div class="gal-card-tag">Residential · Compact Design</div>
-          <div class="gal-card-title">Modern 3-Bedroom Bungalow</div>
+          <div class="gal-card-tag">Residential · Duplex</div>
+          <div class="gal-card-title">Semi Detached Duplex Cluster Flats</div>
           <div class="gal-card-specs">
-            <span class="gal-spec">3 Bedrooms</span><span class="gal-spec">Timber &amp; plaster</span>
+            <span class="gal-spec">Duplex units</span><span class="gal-spec">Cluster layout</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- commercial separate -->
-    <div style="margin-top:14px;" class="reveal">
-      <div class="gal-card" style="border-radius:var(--r);">
-        <img src="686167331_1511781346978083_4048182385277173160_n.jpg" alt="Commercial showroom design by OM City Designs" loading="lazy" style="height:300px;width:100%;object-fit:cover;object-position:center;">
+    <!-- 3rd row -->
+    <div class="gallery-grid" style="margin-top:14px;grid-template-columns:1fr 1fr 1fr;">
+      <div class="gal-card reveal delay-1">
+        <img src="primary-school-construction-management-in-eastlea.jpg" alt="Primary School Construction Management in Eastlea" loading="lazy">
         <div class="gal-card-info">
-          <div class="gal-card-tag">Commercial · Retail Showroom</div>
-          <div class="gal-card-title">Commercial Showroom — Curtain Wall Façade</div>
+          <div class="gal-card-tag">Commercial · Construction Management</div>
+          <div class="gal-card-title">Primary School Construction Management in Eastlea</div>
           <div class="gal-card-specs">
-            <span class="gal-spec">Floor-to-ceiling glazing</span><span class="gal-spec">Signage integration</span><span class="gal-spec">Parking design</span>
+            <span class="gal-spec">Construction management</span><span class="gal-spec">Eastlea</span>
           </div>
+        </div>
+      </div>
+      <div class="gal-card reveal delay-2">
+        <img src="modern-warehouse-design.jpg" alt="Modern Warehouse Design" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Commercial · Industrial</div>
+          <div class="gal-card-title">Modern Warehouse Design</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">Industrial design</span><span class="gal-spec">Warehouse</span>
+          </div>
+        </div>
+      </div>
+      <div class="gal-card reveal delay-3">
+        <img src="3d-and-construction-processes-up-to-finishes-including-kitchen.jpg" alt="3D and Construction Processes up to Finishes including Kitchen" loading="lazy">
+        <div class="gal-card-info">
+          <div class="gal-card-tag">Residential · Full Package</div>
+          <div class="gal-card-title">3D &amp; Construction Processes up to Finishes including Kitchen</div>
+          <div class="gal-card-specs">
+            <span class="gal-spec">3D render</span><span class="gal-spec">Kitchen finishes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- On Site -->
+    <div class="reveal" style="margin-top:48px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <span class="mono eyebrow" style="color:var(--gold-2);">On Site</span>
+        <div style="flex:1;height:1px;background:rgba(245,243,239,.1);"></div>
+        <span style="font-size:.8rem;color:rgba(245,243,239,.4);font-family:'JetBrains Mono',monospace;">Construction management in action</span>
+      </div>
+      <div class="gallery-grid" style="grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div class="gal-card lb-trigger" style="cursor:zoom-in;" data-src="PHOTO-2026-06-23-12-37-41 2.jpg" data-caption="OM City Designs crew on site">
+          <img src="PHOTO-2026-06-23-12-37-41 2.jpg" alt="OM City Designs crew on site" loading="lazy" style="height:220px;">
+          <div class="gal-card-info"><div class="gal-card-title">The Team On Site</div></div>
+        </div>
+        <div class="gal-card lb-trigger" style="cursor:zoom-in;" data-src="PHOTO-2026-06-23-12-37-43 2.jpg" data-caption="Brickwork and scaffolding in progress">
+          <img src="PHOTO-2026-06-23-12-37-43 2.jpg" alt="Brickwork and scaffolding" loading="lazy" style="height:220px;">
+          <div class="gal-card-info"><div class="gal-card-title">Brickwork in Progress</div></div>
+        </div>
+        <div class="gal-card lb-trigger" style="cursor:zoom-in;" data-src="PHOTO-2026-06-23-12-37-42.jpg" data-caption="Site inspection by the Architectural Technician">
+          <img src="PHOTO-2026-06-23-12-37-42.jpg" alt="Site inspection" loading="lazy" style="height:220px;">
+          <div class="gal-card-info"><div class="gal-card-title">Site Inspection</div></div>
+        </div>
+        <div class="gal-card lb-trigger" style="cursor:zoom-in;" data-src="PHOTO-2026-06-23-12-37-41 3.jpg" data-caption="Foundation slab and columns">
+          <img src="PHOTO-2026-06-23-12-37-41 3.jpg" alt="Foundation slab" loading="lazy" style="height:220px;">
+          <div class="gal-card-info"><div class="gal-card-title">Foundation Slab</div></div>
+        </div>
+        <div class="gal-card lb-trigger" style="cursor:zoom-in;" data-src="PHOTO-2026-06-23-12-37-42 2.jpg" data-caption="Steel reinforcement inspection">
+          <img src="PHOTO-2026-06-23-12-37-42 2.jpg" alt="Steel reinforcement" loading="lazy" style="height:220px;">
+          <div class="gal-card-info"><div class="gal-card-title">Steel Reinforcement</div></div>
+        </div>
+        <div class="gal-card lb-trigger" style="cursor:zoom-in;" data-src="PHOTO-2026-06-23-12-37-43.jpg" data-caption="Roof slab supervision">
+          <img src="PHOTO-2026-06-23-12-37-43.jpg" alt="Roof slab supervision" loading="lazy" style="height:220px;">
+          <div class="gal-card-info"><div class="gal-card-title">Roof Slab Supervision</div></div>
+        </div>
+        <div class="gal-card lb-trigger" style="cursor:zoom-in;" data-src="PHOTO-2026-06-23-12-37-41.jpg" data-caption="Foundation trench excavation">
+          <img src="PHOTO-2026-06-23-12-37-41.jpg" alt="Foundation trench" loading="lazy" style="height:220px;">
+          <div class="gal-card-info"><div class="gal-card-title">Foundation Excavation</div></div>
         </div>
       </div>
     </div>
@@ -939,83 +1013,87 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
       <span class="mono eyebrow">Client reviews</span>
       <h2>What it's like to build with us.</h2>
     </div>
-    <div class="t-note reveal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-      Swap in real client quotes before going live — your Facebook reviews are a great source.
-    </div>
     <div class="t-row reveal">
       <div class="t-track">
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"The 3D render blew me away. I could see exactly what my house would look like before we broke ground. The whole team was responsive and professional throughout."</p>
+          <p class="t-quote">"The design of this space is remarkably spacious and well-planned. Your work is absolutely 💯 amazing."</p>
           <div class="t-who">
-            <div class="t-avatar">T</div>
-            <div><div class="t-name">Tendai M.</div><div class="t-sub">3-bedroom build · Borrowdale</div></div>
+            <div class="t-avatar">N</div>
+            <div><div class="t-name">Nokuthula Vimbai Mlambo</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"I came with a rough idea and a tight budget. They worked within it and gave me a plan I'm genuinely proud of. Would recommend to anyone building in Harare."</p>
+          <p class="t-quote">"What a solid designed house."</p>
           <div class="t-who">
-            <div class="t-avatar" style="background:linear-gradient(135deg,var(--timber),var(--gold));">R</div>
-            <div><div class="t-name">Rudo N.</div><div class="t-sub">2-bedroom plan · Ruwa</div></div>
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--timber),var(--gold));">D</div>
+            <div><div class="t-name">Dee M Gee</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Fast turnaround, excellent communication and the final drawings were council-ready first time. No back and forth. Just sorted."</p>
+          <p class="t-quote">"This is very nice design."</p>
           <div class="t-who">
-            <div class="t-avatar" style="background:linear-gradient(135deg,var(--slate),var(--stone-2));">F</div>
-            <div><div class="t-name">Farai K.</div><div class="t-sub">Renovation + extension · Eastlea</div></div>
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--slate),var(--stone-2));">B</div>
+            <div><div class="t-name">Bynance Mushore</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"The interior design service transformed what was going to be a plain house into a home with real character. Every finish was intentional."</p>
+          <p class="t-quote">"I love your designs, they are beautiful."</p>
           <div class="t-who">
-            <div class="t-avatar" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">C</div>
-            <div><div class="t-name">Chiedza P.</div><div class="t-sub">Interior design · Avondale</div></div>
+            <div class="t-avatar" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">B</div>
+            <div><div class="t-name">Bruce Kupahurasa</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"We gave them a stand on a slope and they designed something that works with the terrain beautifully. We never thought it would look this good."</p>
+          <p class="t-quote">"Excellent — keep up the great work."</p>
           <div class="t-who">
-            <div class="t-avatar" style="background:linear-gradient(135deg,var(--gold),var(--timber-2));">S</div>
-            <div><div class="t-name">Simba &amp; Anesu T.</div><div class="t-sub">5-bedroom villa · Mount Pleasant</div></div>
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--gold),var(--timber-2));">M</div>
+            <div><div class="t-name">Mike Nyamande</div><div class="t-sub">Facebook review</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"What a nice house plan 👌👌👌!!"</p>
+          <div class="t-who">
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--blue),var(--blue-2));">J</div>
+            <div><div class="t-name">Joe Bernard</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <!-- Duplicate for seamless loop -->
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"The 3D render blew me away. I could see exactly what my house would look like before we broke ground. The whole team was responsive and professional throughout."</p>
+          <p class="t-quote">"The design of this space is remarkably spacious and well-planned. Your work is absolutely 💯 amazing."</p>
           <div class="t-who">
-            <div class="t-avatar">T</div>
-            <div><div class="t-name">Tendai M.</div><div class="t-sub">3-bedroom build · Borrowdale</div></div>
+            <div class="t-avatar">N</div>
+            <div><div class="t-name">Nokuthula Vimbai Mlambo</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"I came with a rough idea and a tight budget. They worked within it and gave me a plan I'm genuinely proud of. Would recommend to anyone building in Harare."</p>
+          <p class="t-quote">"What a solid designed house."</p>
           <div class="t-who">
-            <div class="t-avatar" style="background:linear-gradient(135deg,var(--timber),var(--gold));">R</div>
-            <div><div class="t-name">Rudo N.</div><div class="t-sub">2-bedroom plan · Ruwa</div></div>
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--timber),var(--gold));">D</div>
+            <div><div class="t-name">Dee M Gee</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Fast turnaround, excellent communication and the final drawings were council-ready first time. No back and forth. Just sorted."</p>
+          <p class="t-quote">"I love your designs, they are beautiful."</p>
           <div class="t-who">
-            <div class="t-avatar" style="background:linear-gradient(135deg,var(--slate),var(--stone-2));">F</div>
-            <div><div class="t-name">Farai K.</div><div class="t-sub">Renovation + extension · Eastlea</div></div>
+            <div class="t-avatar" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">B</div>
+            <div><div class="t-name">Bruce Kupahurasa</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"We gave them a stand on a slope and they designed something that works with the terrain beautifully. We never thought it would look this good."</p>
+          <p class="t-quote">"What a nice house plan 👌👌👌!!"</p>
           <div class="t-who">
-            <div class="t-avatar" style="background:linear-gradient(135deg,var(--gold),var(--timber-2));">S</div>
-            <div><div class="t-name">Simba &amp; Anesu T.</div><div class="t-sub">5-bedroom villa · Mount Pleasant</div></div>
+            <div class="t-avatar" style="background:linear-gradient(135deg,var(--blue),var(--blue-2));">J</div>
+            <div><div class="t-name">Joe Bernard</div><div class="t-sub">Facebook review</div></div>
           </div>
         </div>
       </div>
@@ -1333,5 +1411,94 @@ function handleFormSubmit(e){
 }
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v19.0"></script>
+
+<!-- Lightbox -->
+<div id="lb" role="dialog" aria-modal="true">
+  <button id="lb-close" aria-label="Close">&times;</button>
+  <button id="lb-prev" aria-label="Previous">&#8592;</button>
+  <button id="lb-next" aria-label="Next">&#8594;</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption"></div>
+  <div id="lb-counter"></div>
+</div>
+
+<script>
+(function(){
+  const lb=document.getElementById('lb');
+  const lbImg=document.getElementById('lb-img');
+  const lbCap=document.getElementById('lb-caption');
+  const lbCounter=document.getElementById('lb-counter');
+  let items=[], idx=0;
+
+  function buildItems(){
+    items=[];
+    // lb-trigger cards
+    document.querySelectorAll('.lb-trigger').forEach(el=>{
+      items.push({src:el.dataset.src, caption:el.dataset.caption||''});
+    });
+    // all other gal-cards
+    document.querySelectorAll('.gal-card:not(.lb-trigger)').forEach(el=>{
+      const img=el.querySelector('img');
+      const title=el.querySelector('.gal-card-title,.gal-title');
+      if(img) items.push({src:img.src, caption:title?.textContent||''});
+    });
+  }
+
+  function show(i){
+    idx=(i+items.length)%items.length;
+    lbImg.style.opacity='0';
+    setTimeout(()=>{
+      lbImg.src=items[idx].src;
+      lbImg.onload=()=>{ lbImg.style.opacity='1'; };
+      lbCap.textContent=items[idx].caption;
+      lbCounter.textContent=(idx+1)+' / '+items.length;
+    },150);
+  }
+
+  function open(i){
+    buildItems();
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+    lbImg.style.opacity='1';
+    lbImg.src=items[i].src;
+    lbCap.textContent=items[i].caption;
+    lbCounter.textContent=(i+1)+' / '+items.length;
+    idx=i;
+  }
+
+  function close(){
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+    setTimeout(()=>{ lbImg.src=''; },300);
+  }
+
+  // Wire up lb-trigger cards
+  document.querySelectorAll('.lb-trigger').forEach((el,i)=>{
+    el.addEventListener('click',()=>{ buildItems(); open(items.findIndex(it=>it.src===el.dataset.src)); });
+  });
+
+  // Wire up all other gal-cards
+  document.querySelectorAll('.gal-card:not(.lb-trigger)').forEach(el=>{
+    el.style.cursor='zoom-in';
+    el.addEventListener('click',()=>{
+      buildItems();
+      const img=el.querySelector('img');
+      const i=items.findIndex(it=>it.src===img.src);
+      open(i>=0?i:0);
+    });
+  });
+
+  document.getElementById('lb-prev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lb-next').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  document.getElementById('lb-close').addEventListener('click',close);
+  lb.addEventListener('click',e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') show(idx-1);
+    if(e.key==='ArrowRight') show(idx+1);
+  });
+})();
+</script>
 </body>
 </html>
